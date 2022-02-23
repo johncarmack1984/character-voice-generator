@@ -24,3 +24,17 @@ Some sample voices:
 >    Her voice is Medium in size, and she speaks at a Medium tempo with a Quiet volume. Her attitude is Agressive, and her Welsh accent can be heard in everything she says. 
 >    
 >    Bark Phoenix's vocal issue is None.
+
+
+>    Herman Tomfoolery's voice has a Laban Effort of Floating (Sustained, indirect & light). He is a Man who places his voice in his Chest. He is Young, and the air in his voice has a Dry quality. 
+>    
+>    His voice is Small in size, and he speaks at a Medium tempo with a Loud volume. His attitude is Friendly, and his General American accent can be heard in everything he says. 
+>    
+>    Herman Tomfoolery's vocal issue is Lisp.
+
+
+>    Gol Den Retriever's voice has a Laban Effort of Gliding (Sustained, direct & light). He is a Man who places his voice in his Nose. He is Middle aged, and the air in his voice has a Breathy quality. 
+>    
+>    His voice is Large in size, and he speaks at a Fast tempo with a Medium volume. His attitude is Agressive, and his Southern California accent can be heard in everything he says. 
+>    
+>    Gol Den Retriever's vocal issue is Mumbler.
