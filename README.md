@@ -16,3 +16,11 @@ python3 character-voice-generator.py
 as the case may be.
 
 Enjoy!
+
+Some sample voices:
+
+>    Bark Phoenix's voice has a Laban Effort of Flicking (Sudden, indirect & light). She is a Woman who places her voice in her Throat (Kermit the Frog style). She is Old, and the air in her voice has a Dry quality. 
+>    
+>    Her voice is Medium in size, and she speaks at a Medium tempo with a Quiet volume. Her attitude is Agressive, and her Welsh accent can be heard in everything she says. 
+>    
+>    Bark Phoenix's vocal issue is None.
