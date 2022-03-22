@@ -88,7 +88,7 @@ export default {
 
     },
     mounted () {
-        console.log(this.getPronouns(this.character.traits["Gender"])[this.character.traits["Gender"]])
+        //console.log(this.getPronouns(this.character.traits["Gender"])[this.character.traits["Gender"]])
     },
     setup() {
 
