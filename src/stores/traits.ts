@@ -49,7 +49,7 @@ export const useTraitsStore = defineStore('traits', {
         'Slow','Medium','Fast',
       ],
       Volume: [
-      'Quiet','Medium','Loud',
+      'Quiet','Medium Loud','Loud',
       ],
       Attitude: [
         'Friendly','Impartial','Agressive',

@@ -7,12 +7,13 @@ interface Pronouns {
     obj: string,
     pos: string,
     be: string,
-    is: string,
     s: string
 }
 interface PronounBank {
     [key: string] : Pronouns;
 }
+
+export type aOrAn = "a" | "an";
 
 export default defineComponent({
     props: {
@@ -34,21 +35,23 @@ export default defineComponent({
     },
     computed: {        
         setPronounsByGender(): Pronouns {
+            const gender: string = this.character?.traits["Gender"]
             return {
-                "Man": this.pronounStore.male,
-                "Woman": this.pronounStore.female,
-                "Agender person": this.pronounStore.neutral,
-                "Non-Binary person": this.pronounStore.neutral
-            }[this.character?.traits["Gender"]]
+              "Man": this.pronounStore.male,
+              "Woman": this.pronounStore.female,
+              "Agender person": this.pronounStore.neutral,
+              "Non-Binary person": this.pronounStore.neutral
+            }[gender] as unknown as Pronouns
+            
         },
-
-        setAOrAnByGender(): string {
+        setAOrAnByGender(): aOrAn {
+            const gender: string = this.character?.traits["Gender"]
             return {
                 "Man": "a",
                 "Woman": "a",
                 "Agender person": "an",
                 "Non-Binary person": "a",
-            }[this.character?.traits["Gender"]]
+            }[gender] as unknown as aOrAn
         }
     },
     watch: {

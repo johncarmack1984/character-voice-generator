@@ -2,8 +2,10 @@
 import TheCharacter from "./components/TheCharacter.vue";
 import { useCharacterStore } from '@/stores/character';
 import { useTraitsStore } from '@/stores/traits';
+import { defineComponent } from 'vue'
 
-export default {
+
+export default defineComponent({
   components: { TheCharacter },
   setup() {
     const character = useCharacterStore()
@@ -13,7 +15,7 @@ export default {
   mounted() {
     this.character.setAllRandom()
   },
-}
+})
 </script>
 
 <template>
