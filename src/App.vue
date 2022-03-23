@@ -20,7 +20,7 @@ export default defineComponent({
 
 <template>
 
-  <header class="flex flex-row flex-wrap">
+  <header class="text-center">
         <button 
       class="container mx-auto max-w-md mt-24 text-4xl rounded-full border-2 p-5"
       @click="character.setAllRandom()"
@@ -36,6 +36,11 @@ export default defineComponent({
     ></the-character>
 
   </main>
+
+  <footer class="container mx-auto center text-center pt-10">
+    <a class="underline" target="new" href="https://github.com/johncarmack1984/character-voice-generator">Character Voice Generator</a> 
+    by <a class="underline" href="https://github.com/johncarmack1984/">John Carmack</a>
+  </footer>
 
 </template>
 
