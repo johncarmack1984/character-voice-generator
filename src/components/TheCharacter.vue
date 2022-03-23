@@ -1,175 +1,124 @@
 <script lang="ts">
-import InlineTraitChooser from "./InlineTraitChooser.vue";
+import { usePronounStore } from '@/stores/pronouns';
+import { defineComponent } from 'vue'
 
-export default {
-    data() {
-        return {
-            "pronouns": {
-                'subj': 'they',
-                'obj': 'them',
-                'pos': 'their',
-                'be': 'are',
-                'aOrAn': 'a'
-            },
-        }
-    },
+interface Pronouns {
+    subj: string,
+    obj: string,
+    pos: string,
+    be: string,
+    is: string,
+    s: string
+}
+interface PronounBank {
+    [key: string] : Pronouns;
+}
+
+export default defineComponent({
     props: {
         character: Object,
         traits: Object,
     },
-    components: { 
-        InlineTraitChooser 
+    setup() {
+        const pronounStore = usePronounStore();
+        const pronouns = pronounStore.neutral;
+        const aOrAn = "a";
+        return { 
+            pronounStore,
+            pronouns,
+            aOrAn
+        }
     },
     methods: {
-        subjectivePronoun() {},
-        subjectiveBe() {},
-        aOrAn() {},
-        getPronouns(gender) {
-            return { 
-                'Man':  {
-                    'subj': 'He',
-                    'be': {
-                        'subj': 'He is'
-                    }
-                },
-                'Woman': {
-                    'subj': 'she',
-                    'be': {
-                        'subj': 'She is'
-                    }
-                },
-                'Non-Binary person': {
-                    'subj': 'they',
-                    'be': {
-                        'subj': 'They are',
-                    }
-                },
-                'Agender person': {
-                    'subj': 'they',
-                    'be': {
-                        'subj': 'They are',
-                    }
-                },
-            }
+
+    },
+    computed: {        
+        setPronounsByGender(): Pronouns {
+            return {
+                "Man": this.pronounStore.male,
+                "Woman": this.pronounStore.female,
+                "Agender person": this.pronounStore.neutral,
+                "Non-Binary person": this.pronounStore.neutral
+            }[this.character?.traits["Gender"]]
+        },
+
+        setAOrAnByGender(): string {
+            return {
+                "Man": "a",
+                "Woman": "a",
+                "Agender person": "an",
+                "Non-Binary person": "a",
+            }[this.character?.traits["Gender"]]
         }
     },
     watch: {
-       
-    },
-    computed: {        
-        /* pronouns(gender) {
-            return { 
-                'Man':  {
-                    'subj': 'He',
-                    'be': {
-                        'subj': 'He is'
-                    }
-                },
-                'Woman': {
-                    'subj': 'she',
-                    'be': {
-                        'subj': 'She is'
-                    }
-                },
-                'Non-Binary person': {
-                    'subj': 'they',
-                    'be': {
-                        'subj': 'They are',
-                    }
-                },
-                'Agender person': {
-                    'subj': 'they',
-                    'be': {
-                        'subj': 'They are',
-                    }
-                },
-            }
-        } */
-
+       'character.traits.Gender'(newValue) {
+           if (newValue) {
+               this.pronouns = this.setPronounsByGender
+               this.aOrAn = this.setAOrAnByGender
+           }
+       }
     },
     mounted () {
-        //console.log(this.getPronouns(this.character.traits["Gender"])[this.character.traits["Gender"]])
-    },
-    setup() {
 
-    }
-}
+    },
+})
 </script>
 
 <template>
     <div clas="">
-        <p class="py-[2rem] leading-10 indent-0">
-            {{ character.traits["Name"] }}'s voice has a Laban Effort of 
-                
+        <p class="">
+            <strong>{{ character?.traits["Name"] }}</strong>'s voice has a Laban Effort of <strong>{{ character?.traits["Laban Effort"] }}</strong>.
 
-                {{ character.traits["Laban Effort"] }}.
-                <!--select 
-                    v-model="character.traits['Laban Effort']" 
-                    class="border-2 border-black p-1"
-                    
-                > 
-                    <option 
-                        v-for="option in 
-                        traits.traits['Laban Effort']"
-                        :value="option"
-                    >
-                        {{ option }}
-                    </option>
-                </select-->
-                <!--inline-trait-chooser trait="Laban Effort" /-->
-                <!--inline-trait-chooser 
-                        :value="character.traits['Laban Effort']" 
-                        :options="traits.traits['Laban Effort']"
-                        @set-trait="setTrait"
-                /-->
-
-            <!--{{ pronouns()[character.traits["Gender"]].be.subj }}-->
-            &nbsp;<span class="capitalize">
-                {{ pronouns.subj }}
-            </span> {{ pronouns.be + " " + pronouns.aOrAn + " " + character.traits["Gender"] }}
-                    
-            who places {{ pronouns.pos }} voice in {{ pronouns.pos }}
+            &nbsp;<span class="capitalize">{{ pronouns.subj }}</span>&nbsp;{{ 
             
-                    {{ character.traits["Placement"] }}.
-                    
-            <span class="capitalize">{{ pronouns.subj }}</span> are 
+                pronouns.be + " " + aOrAn + " "}}<strong>{{ character?.traits["Gender"] }}</strong>
             
-                    {{ character.traits["Age"] }},
-                    
-            and the air in {{ pronouns.pos }} voice has a 
+            who places {{ pronouns.pos }} voice in {{ pronouns.pos }} 
             
-                    {{ character.traits["Air Quality"] }}
+            <strong>{{ character?.traits["Placement"] }}</strong>. <span class="capitalize">
+            
+            {{ pronouns.subj }}</span> {{ pronouns.be }} <strong>{{ character?.traits["Age"] }}</strong>,
+                    
+            and the air in {{ pronouns.pos }} voice has a <strong>{{ character?.traits["Air Quality"] }}</strong>
                     
             quality.
                 
         </p>
-        <p class="py-[2rem] leading-10 indent-0">
-            <span class="capitalize">{{ pronouns.pos }}</span> voice is 
 
-                    {{ character.traits["Size"] }}
+        <p class="">
+
+            <span class="capitalize">{{ pronouns.pos }}</span> voice is <strong>{{ character?.traits["Size"] }}</strong>
                     
-            in size, and {{ pronouns.subj }} speak at a 
+            in size. <span class="capitalize">{{ pronouns.subj }}</span> speak{{ pronouns.s }} <strong>{{ character?.traits["Volume"] }}</strong>ly,
             
-                    {{ character.traits["Tempo"] }}
-                    
-            tempo, with a 
+            at a <strong>{{ character?.traits["Tempo"] }}</strong> tempo. <span class="capitalize">
             
-                    {{ character.traits["Volume"] }}
+            {{ pronouns.pos }}</span> attitude is <strong>{{ character?.traits["Attitude"] }}</strong>, and {{ pronouns.pos }} 
                     
-            volume. <span class="capitalize">{{ pronouns.pos }}</span> attitude is 
+            <strong>{{ character?.traits["Accent"] }}</strong> accent can be heard in everything {{ pronouns.subj }} 
             
-                    {{ character.traits["Attitude"] }},
-                    
-            and {{ pronouns.pos }} 
-                    
-                    {{ character.traits["Accent"] }}
-                    
-            accent can be heard in everything {{ pronouns.subj }} say.
+            say{{ pronouns.s }}.
         </p>
-        <p class="py-[2rem] leading-10 indent-0">
-            {{ character.traits["Name"] }}'s vocal issue is 
+
+        <p class="">
+            {{ character?.traits["Name"] }}'s vocal issue is 
             
-                    {{ character.traits["Vocal Issue"] }}.
+                    <strong>{{ character?.traits["Vocal Issue"] }}</strong>.
         </p>
+
     </div>
 </template>
+
+<style>
+    p {
+        padding-top: 0rem;
+        padding-right: 0rem;
+        padding-bottom: 1.75rem;
+        padding-left: 0rem;
+        line-height: 2.65rem;
+        text-indent: 0rem;
+        hyphens: auto;
+        /* text-justify: auto; */
+    }
+</style>

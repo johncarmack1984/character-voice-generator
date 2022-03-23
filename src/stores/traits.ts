@@ -1,4 +1,13 @@
+import { stringifyStyle } from "@vue/shared";
 import { defineStore } from "pinia";
+
+export interface OptionList {
+  length: number;
+  [index: number]: string
+};
+export interface TraitsBlob {
+  [key: string]: OptionList;
+}
 
 export const useTraitsStore = defineStore('traits', {
   state: () => ({
@@ -59,8 +68,10 @@ export const useTraitsStore = defineStore('traits', {
   getters: {
   },
   actions: {
-    retrieveRandom(trait) {
-      return this.traits[trait][Math.floor(Math.random()*this.traits[trait].length)]
+    retrieveRandom(trait: string) {
+      const traits: TraitsBlob = this.traits
+      const options: OptionList = traits[trait] 
+      return options[Math.floor(Math.random()* options.length)]
     }
   },
 });
