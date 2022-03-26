@@ -5,7 +5,7 @@ export const usePronounStore = defineStore('pronouns', {
       "male": { "subj": "he", "obj": "him", "pos": "his", "be": "is", "s": "s"},
       "female": { "subj": "she", "obj": "her", "pos": "her", "be": "is", "s": "s"},
       "neutral": { "subj": "they", "obj": "them", "pos": "their", "be": "are", "s": ""},
-  }),
+  }) as StateTree,
   getters: {
 
   },

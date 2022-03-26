@@ -1,5 +1,5 @@
 import { stringifyStyle } from "@vue/shared";
-import { defineStore } from "pinia";
+import { defineStore, type StateTree } from "pinia";
 
 export interface OptionList {
   length: number;
@@ -64,7 +64,7 @@ export const useTraitsStore = defineStore('traits', {
       'Raspy','Lisp','Mumbler','None',
       ],
     },
-  }),
+  }) as StateTree,
   getters: {
   },
   actions: {

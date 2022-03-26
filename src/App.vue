@@ -22,14 +22,14 @@ export default defineComponent({
 
   <header class="text-center">
         <button 
-      class="container mx-auto max-w-md mt-24 text-4xl rounded-full border-2 p-5"
+      class="container mx-auto max-w-sm md:max-w-md mt-24 text-4xl rounded-full border-2 p-5"
       @click="character.setAllRandom()"
     >
       Random Character
     </button>
   </header>
 
-  <main class="mx-auto max-w-lg mt-14 flex flex-col items-center">
+  <main class="mx-auto max-w-sm md:max-w-md mt-14 flex flex-col items-center">
     <the-character 
       :character="character" 
       :traits="traits"
@@ -37,7 +37,7 @@ export default defineComponent({
 
   </main>
 
-  <footer class="container mx-auto center text-center pt-10">
+  <footer class="container mx-auto max-w-sm md:max-w-md center text-center pt-10">
     <a class="underline" target="new" href="https://github.com/johncarmack1984/character-voice-generator">Character Voice Generator</a> 
     by <a class="underline" href="https://github.com/johncarmack1984/">John Carmack</a>
   </footer>

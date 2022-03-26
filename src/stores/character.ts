@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, type StateTree } from "pinia";
 import { useTraitsStore } from './traits';
 
 
@@ -27,7 +27,7 @@ export const useCharacterStore = defineStore('character', {
       "Accent": String,
       "Vocal Issue": String,
     },
-  }) as unknown as RootCharacterState,
+  }) as StateTree,
   getters: {
   },
   actions: {
