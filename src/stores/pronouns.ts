@@ -1,4 +1,4 @@
-import { defineStore } from "pinia";
+import { defineStore, type StateTree } from "pinia";
 
 export const usePronounStore = defineStore('pronouns', {
   state: () => ({
